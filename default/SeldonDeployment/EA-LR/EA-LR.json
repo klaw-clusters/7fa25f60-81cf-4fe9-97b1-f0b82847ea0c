@@ -1,0 +1,65 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "metadata": {
+        "name": "EA-LR",
+        "namespace": "default",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "EA-LR",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "EA-LR-container",
+                    "implementation": "SKLEARN_SERVER",
+                    "endpoint": {
+                        "type": "REST"
+                    },
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/EA/lr",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-10-13T12:26:30Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "EA-LR-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon",
+        "transport": "rest"
+    },
+    "status": {}
+}
