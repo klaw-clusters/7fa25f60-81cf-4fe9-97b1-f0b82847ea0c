@@ -1,0 +1,65 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "metadata": {
+        "name": "\u003cYOUR NAME\u003e-\u003cMODEL NAME\u003e",
+        "namespace": "default",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "\u003cYOUR NAME\u003e-\u003cMODEL NAME\u003e",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "\u003cYOUR NAME\u003e-\u003cMODEL NAME\u003e-container",
+                    "implementation": "SKLEARN_SERVER",
+                    "endpoint": {
+                        "type": "REST"
+                    },
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/\u003cYOUR NAME\u003e/lr",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-10-13T12:20:21Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "\u003cYOUR NAME\u003e-\u003cMODEL NAME\u003e-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon",
+        "transport": "rest"
+    },
+    "status": {}
+}
