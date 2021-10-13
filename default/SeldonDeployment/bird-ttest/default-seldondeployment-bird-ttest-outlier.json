@@ -34,7 +34,7 @@
                                     "--protocol",
                                     "seldon.http",
                                     "--storage_uri",
-                                    "gs://tom-seldon-examples/retail-workshop/models/YOUR NAME/outlier_detector/",
+                                    "gs://tom-seldon-examples/retail-workshop/models/bird/outlier_detector/",
                                     "--reply_url",
                                     "http://seldon-request-logger.seldon-logs",
                                     "--event_type",
