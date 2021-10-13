@@ -1,12 +1,11 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
     "metadata": {
         "name": "lemetrics-lr",
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
-            "app.kubernetes.io/instance": "7fa25f60-81cf-4fe9-97b1-f0b82847ea0c-default",
             "fluentd": "true"
         }
     },
@@ -29,7 +28,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2021-10-13T12:26:52Z"
+                            "creationTimestamp": "2021-10-13T12:48:27Z"
                         },
                         "spec": {
                             "containers": [
@@ -56,6 +55,7 @@
                 "traffic": 100,
                 "explainer": {
                     "type": "AnchorTabular",
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/pretrained/lr",
                     "containerSpec": {
                         "name": "",
                         "resources": {}
